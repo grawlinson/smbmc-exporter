@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "smbmc-exporter"
+version = "0.1.0"
+description = "Prometheus exporter for smbmc metrics"
+authors = ["George Rawlinson <george@rawlinson.net.nz>"]
+repository = "https://github.com/grawlinson/smbmc"
+license = "GPL-3.0-only"
+readme="README.rst"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: System :: Monitoring",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.scripts]
+smbmc-exporter = "smbmc_exporter.console:main"
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+smbmc = "^0.2.0"
+prometheus-client = "^0.8.0"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
