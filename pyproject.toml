@@ -26,7 +26,7 @@ smbmc-exporter = "smbmc_exporter.console:main"
 [tool.poetry.dependencies]
 python = "^3.6.1"
 smbmc = "^0.2.0"
-prometheus-client = "^0.8.0"
+prometheus-client = "^0.9.0"
 click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
