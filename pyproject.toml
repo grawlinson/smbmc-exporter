@@ -1,36 +1,80 @@
-[tool.poetry]
+[project]
 name = "smbmc-exporter"
 version = "0.1.0"
 description = "Prometheus exporter for smbmc metrics"
-authors = ["George Rawlinson <george@rawlinson.net.nz>"]
+authors = [
+    {name="George Rawlinson", email="george@rawlinson.net.nz"},
+]
 repository = "https://github.com/grawlinson/smbmc-exporter"
-license = "GPL-3.0-only"
 readme="README.rst"
+license = {text="GPL-3.0-only"}
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Topic :: System :: Monitoring",
     "Topic :: Utilities",
 ]
+dependencies = [
+    "smbmc>=0.2.0",
+    "prometheus-client>=0.9.0",
+    "click>=7.1.2",
+]
 
-[tool.poetry.scripts]
+[dependency-groups]
+dev = [
+    "ruff>=0.15.22",
+]
+[project.scripts]
 smbmc-exporter = "smbmc_exporter.console:main"
 
-[tool.poetry.dependencies]
-python = "^3.6.1"
-smbmc = "^0.2.0"
-prometheus-client = "^0.9.0"
-click = "^7.1.2"
-
-[tool.poetry.dev-dependencies]
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.11.31,<0.12"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    # flake8-annotations
+    "ANN",
+    # flake8-builtins
+    "A",
+    # flake8-pytest-style
+    "PT",
+    # pep8-naming
+    "N",
+    # flake8-datetimez
+    "DTZ",
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # ruff
+    "RUF",
+    # mccabe
+    "C90",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/{tests,docs}/*" = ["ANN"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
