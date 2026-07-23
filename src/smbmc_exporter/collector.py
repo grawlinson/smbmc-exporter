@@ -1,8 +1,10 @@
 """Collector for SMBMC metrics."""
+
 import time
+
 from prometheus_client import Summary
 from prometheus_client.core import GaugeMetricFamily
-from smbmc import Client, SensorTypeEnum, SensorStateEnum, PowerSupplyFlag
+from smbmc import Client, PowerSupplyFlag, SensorStateEnum, SensorTypeEnum
 
 COLLECTION_TIME = Summary(
     "smbmc_collector_collect_seconds",
@@ -13,11 +15,11 @@ COLLECTION_TIME = Summary(
 class SMBMCCollector:
     """Provides an interface to SMBMC collector."""
 
-    def __init__(self, hostname, username, password):
+    def __init__(self, hostname: str, username: str, password: str) -> None:
         """Initialises SMBMC Collector."""
         self._client = Client(hostname, username, password)
 
-    def collect(self):
+    def collect(self) -> None:
         start = time.time()
 
         # acquire data

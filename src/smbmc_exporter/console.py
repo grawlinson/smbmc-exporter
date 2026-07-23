@@ -1,4 +1,5 @@
 """Command line interface."""
+
 import time
 
 import click
@@ -46,7 +47,9 @@ from .collector import SMBMCCollector
     show_envvar=True,
     default="0.0.0.0",
 )
-def main(hostname, username, password, listen_port, listen_addr):
+def main(
+    hostname: str, username: str, password: str, listen_port: int, listen_addr: str
+) -> None:
     """Prometheus exporter for smbmc metrics."""
     click.echo(f"Connecting to {hostname}")
     click.echo(f"Listening on {listen_addr}:{listen_port}")
