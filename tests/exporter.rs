@@ -53,7 +53,8 @@ fn golden_output() {
     if std::env::var_os("UPDATE_GOLDEN").is_some() {
         std::fs::write(&path, &body).unwrap();
     }
-    assert_eq!(body, fixture("metrics.txt"));
+    // Normalise line endings in case the fixture was checked out with CRLF.
+    assert_eq!(body, fixture("metrics.txt").replace("\r\n", "\n"));
 }
 
 #[test]
